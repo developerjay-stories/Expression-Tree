@@ -5,3 +5,37 @@ Expression tree is an in-memory representation of a lambda expression. It holds 
 The expression tree makes the structure of the lambda expression transparent and explicit. You can interact with the data in the expression tree just as you can with any other data structure.
 
 For example, consider the following isTeenAgerExpr expression:
+
+Expression<Func<Student, bool>> isTeenAgerExpr = s => s.age > 12 && s.age < 20;
+
+
+Example: Expression Tree in C#
+Expression.Lambda<Func<Student, bool>>(
+                Expression.AndAlso(
+                    Expression.GreaterThan(Expression.Property(pe, "Age"), Expression.Constant(12, typeof(int))),
+                    Expression.LessThan(Expression.Property(pe, "Age"), Expression.Constant(20, typeof(int)))),
+                        new[] { pe });
+                        
+                        
+Example: Func delegate in C#:
+Func<Student, bool> isAdult = s => s.age >= 18;
+
+Example: Expression Tree in C#
+ParameterExpression pe = Expression.Parameter(typeof(Student), "s");
+
+MemberExpression me = Expression.Property(pe, "Age");
+
+ConstantExpression constant = Expression.Constant(18, typeof(int));
+
+BinaryExpression body = Expression.GreaterThanOrEqual(me, constant);
+
+var ExpressionTree = Expression.Lambda<Func<Student, bool>>(body, new[] { pe });
+
+Console.WriteLine("Expression Tree: {0}", ExpressionTree);
+		
+Console.WriteLine("Expression Tree Body: {0}", ExpressionTree.Body);
+		
+Console.WriteLine("Number of Parameters in Expression Tree: {0}", 
+                                ExpressionTree.Parameters.Count);
+		
+Console.WriteLine("Parameters in Expression Tree: {0}", ExpressionTree.Parameters[0]);
