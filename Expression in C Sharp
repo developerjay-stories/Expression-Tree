@@ -1,0 +1,7 @@
+Expression tree as name suggests is nothing but expressions arranged in a tree-like data structure. Each node in an expression tree is an expression. For example, an expression tree can be used to represent mathematical formula x < y where x, < and y will be represented as an expression and arranged in the tree like structure.
+
+Expression tree is an in-memory representation of a lambda expression. It holds the actual elements of the query, not the result of the query.
+
+The expression tree makes the structure of the lambda expression transparent and explicit. You can interact with the data in the expression tree just as you can with any other data structure.
+
+For example, consider the following isTeenAgerExpr expression:
